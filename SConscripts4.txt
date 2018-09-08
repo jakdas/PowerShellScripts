@@ -1,0 +1,305 @@
+./ACAPI=ASCModuleName='ACAPI'
+./ACAPI=ASCModuleType='framework'
+./ACAPI=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./ACAPI=ASCModuleCCFLAGS=[ '-DACAPI_BUILD' ]
+./ACAPI=ASCShouldInstallModuleHeader=1
+./ACAPI=ASCShouldInstallDefinesHeader=1
+./ACSDK=ASCModuleName='ACSDK'
+./ACSDK=ASCModuleType='sdk'
+./ACSDK=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'BusinessPlanningCore', 'MisysBoard', 'REST',  'ACAPI', 'BehavioralCore'  ]
+./ACSDK=ASCModuleCCFLAGS=[ '-DACSDKAPI_BUILDING_DLL' ]
+./ACSDK=ASCShouldInstallModuleHeader=1
+./ACSDK=ASCShouldInstallDefinesHeader=1
+./AICPortfolio=ASCModuleName='AICPortfolio'
+./AICPortfolio=ASCModuleType='almPlugin'
+./AICPortfolio=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'BusinessPlanningCore', 'ALMFinancialCore' ]
+./AICPortfolio=ASCModuleCCFLAGS=[ '-DFCAPI_BUILD' ]
+./AICPortfolio=ASCShouldInstallModuleHeader=0
+./AICPortfolio=ASCShouldInstallDefinesHeader=0
+./AICRecords=ASCModuleName='AICRecords'
+./AICRecords=ASCModuleType='almPlugin'
+./AICRecords=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore']
+./AICRecords=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./AICRecords=ASCShouldInstallModuleHeader=0
+./AICRecords=ASCShouldInstallDefinesHeader=0
+./AICStandardsIC=ASCModuleName='AICStandardsIC'
+./AICStandardsIC=ASCModuleType='almPlugin'
+./AICStandardsIC=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'IASCore', 'IFRSCore', 'CreditRiskCore' ]
+./AICStandardsIC=ASCShouldInstallModuleHeader=0
+./AICStandardsIC=ASCShouldInstallDefinesHeader=0
+./ALMCore=ASCModuleName='ALMCore'
+./ALMCore=ASCModuleType='framework'
+./ALMCore=ASCModuleFrameworksUsed=[ 'Foundation' ]
+./ALMCore=ASCModuleCCFLAGS=['-DALMCORE_BUILDING_DLL', '-D_ARC_ELS_LICENSING' ]
+./ALMCore=ASCModuleHeadersPaths=['#Library/odbc/i386-mingw32-w32/include','#Library/libxml2/i386-mingw32-w32/include/libxml2','#Library/zlib/i386-mingw32-w32/include','#Library/openssl/i386-mingw32-w32/include','#Library/openldap/i386-mingw32-w32/include','#Library/els/i386-mingw32-w32/include']
+./ALMCore=ASCModuleLibrariesPaths=['#Library/odbc/i386-mingw32-w32/lib','#Library/libxml2/i386-mingw32-w32/lib','#Library/zlib/i386-mingw32-w32/lib','#Library/openssl/i386-mingw32-w32/lib','#Library/openldap/i386-mingw32-w32/lib','#Library/els/i386-mingw32-w32/lib','#Library/libcurl/i386-mingw32-w32/lib']
+./ALMCore=ASCModuleLibraries=[ 'odbc32', 'xml2', 'z', 'rpcrt4', 'ssl', 'crypto', 'ws2_32', 'gdi32', 'ldap', 'lber', 'elsctk', 'elsctools', 'elsseed', 'curl' ]
+./ALMCore=ASCModuleHeadersPaths=['#Library/els/' + env['ENV']['TRIPLET'] + '/include',]
+./ALMCore=ASCModuleLibrariesPaths=['#Library/odbc/' + env['ENV']['TRIPLET'] + '/lib','#Library/els/' + env['ENV']['TRIPLET'] + '/lib','#Library/libcurl/' + env['ENV']['TRIPLET'] + '/lib']
+./ALMCore=ASCModuleLibraries=[ 'crypto', 'ldap', 'ssl', 'xml2', 'z', 'uuid', 'odbc', 'elsctk', 'elsctools' , 'elsseed', 'curl' ]
+./ALMCore=ASCShouldGenerateModuleHeader=1
+./ALMCore=ASCShouldGenerateDefinesHeader=1
+./ALMCR=ASCModuleName='ALMCR'
+./ALMCR=ASCModuleType='framework'
+./ALMCR=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./ALMCR=ASCModuleCCFLAGS=[ '-DALMONDE4', '-DALMCR_BUILDING_DLL' ]
+./ALMCR=ASCShouldGenerateModuleHeader=1
+./ALMCR=ASCShouldGenerateDefinesHeader=1
+./ALMFinancialCore=ASCModuleName='ALMFinancialCore'
+./ALMFinancialCore=ASCModuleType='framework'
+./ALMFinancialCore=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./ALMFinancialCore=ASCModuleCCFLAGS=[ '-DALMFINANCIALCORE_BUILDING_DLL', '-DFCAPI_BUILD' ]
+./ALMFinancialCore=ASCModulePrivateHeaders=[„ASA/asa_usr_asa.h","ASA/asa_usr.h","ASA/asa.h"]
+./ALMFinancialCore=ASCShouldGenerateModuleHeader=1
+./ALMFinancialCore=ASCShouldGenerateDefinesHeader=1
+./Almonde=ASCModuleName='Almonde'
+./Almonde=ASCModuleType='executable'
+./Almonde=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'ACAPI', 'BehavioralCore', 'BusinessPlanningCore', 'CashFlow', 'Errors', 'IFRSCore', 'MisysBoard', 'REST', 'CreditRiskCore', 'CashFlowsInRules' ]
+./Almonde=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD", '-D_ARC_ELS_LICENSING'] 
+./Almonde=ASCModuleHeadersPaths=['#Library/libxml2/i386-mingw32-w32/include/libxml2','#Library/openldap/i386-mingw32-w32/include','#Library/bfd/i386-mingw32-w32/include','#Library/els/i386-mingw32-w32/include','#Source']
+./Almonde=ASCModuleLibrariesPaths=['#Library/libxml2/i386-mingw32-w32/lib','#Library/bfd/i386-mingw32-w32/lib','#Library/els/i386-mingw32-w32/lib']
+./Almonde=ASCModuleLibraries=['xml2', 'iberty', 'psapi',  'elsctk', 'elsctools', 'elsseed']
+./Almonde=ASCModuleHeadersPaths=['#Library/els/' + env['ENV']['TRIPLET'] + '/include','#Source']
+./Almonde=ASCModuleLibrariesPaths=['#Library/gnustep/' + env['ENV']['TRIPLET'] + '/lib','#Library/els/' + env['ENV']['TRIPLET'] + '/lib']
+./Almonde=ASCModuleLibraries=[ 'xml2', 'ffi', 'elsctk', 'elsctools', 'elsseed' ]
+./AlmondeClient=ASCModuleName='AlmondeClient'
+./AlmondeClient=ASCModuleType='java'
+./AlmondeClient=ASCModuleOutputJarDir='#Executable'
+./AlmondeIDE=ASCModuleName='AlmondeIDE'
+./AlmondeIDE=ASCModuleType='java'
+./AlmondeIDE=ASCModuleJavaVersion='1.6'
+./AlmondeIDE=ASCModuleJavacFlags='-target 1.6 -source 1.6'
+./AlmondeIDE=ASCModuleOutputJarDir='#Executable'
+./ALMOracleConnection=ASCModuleName='ALMOracleConnection'
+./ALMOracleConnection=ASCModuleType='almPlugin'
+./ALMOracleConnection=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./ALMOracleConnection=ASCModuleHeadersPaths=[ '#Library/oracle/i386-mingw32-w32/include', ]
+./ALMOracleConnection=ASCModuleLibrariesPaths=[ '#Library/oracle/i386-mingw32-w32/lib', ]
+./ALMOracleConnection=ASCModuleLibraries=[ 'oci' ]
+./ALMOracleConnection=ASCModuleHeadersPaths=[ '#Library/oracle/' + env['ENV']['TRIPLET'] + '/sdk/include' ]
+./ALMOracleConnection=ASCModuleLibrariesPaths=[ '#Library/oracle/' + env['ENV']['TRIPLET'], ]
+./ALMOracleConnection=ASCModuleLibraries=[ 'clntsh', 'occi' ]
+./ALMOracleConnection=ASCShouldInstallModuleHeader=1
+./ALMOracleConnection=ASCShouldInstallDefinesHeader=1
+./almpl=ASCModuleName='almpl'
+./almpl=ASCModuleType='executable'
+./almpl=ASCModuleFrameworksUsed=[ 'Foundation' ]
+./almpl=ASCModuleLibrariesPaths=[
+./almpl=ASCModuleHeadersPaths=['#Source']
+./almpl=ASCModuleLibrariesPaths=['#Library/gnustep/' + env['ENV']['TRIPLET'] + '/lib']
+./almpl=ASCModuleLibraries=[ 'ffi', 'gnustep-base' ]
+./ALMSQLServerConnection=ASCModuleName='ALMSQLServerConnection'
+./ALMSQLServerConnection=ASCModuleType='almPlugin'
+./ALMSQLServerConnection=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./ALMSQLServerConnection=ASCModuleHeadersPaths=[ '#Library/odbc/i386-mingw32-w32/include', ]
+./ALMSQLServerConnection=ASCModuleLibrariesPaths=[ '#Library/odbc/i386-mingw32-w32/lib', ]
+./ALMSQLServerConnection=ASCModuleLibraries=[ 'odbc32' ]
+./ALMSQLServerConnection=ASCModuleLibrariesPaths=['#Library/freetds/' + env['ENV']['TRIPLET'] + '/lib'] 
+./ALMSQLServerConnection=ASCModuleLibraries=[ 'tdsodbc', 'odbc', 'odbcinst' ]
+./ALMSQLServerConnection=ASCShouldInstallModuleHeader=1
+./BehavioralADK=ASCModuleName='BehavioralADK'
+./BehavioralADK=ASCModuleType='almPlugin'
+./BehavioralADK=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'BehavioralCore' ]
+./BehavioralADK=ASCModuleCCFLAGS=[ '-DFCAPI_BUILD' ]
+./BehavioralADK=ASCShouldInstallModuleHeader=0
+./BehavioralADK=ASCShouldInstallDefinesHeader=0
+./BehavioralCore=ASCModuleName='BehavioralCore'
+./BehavioralCore=ASCModuleType='framework'
+./BehavioralCore=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'ACAPI' ]
+./BehavioralCore=ASCModuleCCFLAGS=[ '-DACBEHAVIORALSAPI_BUILDING_DLL' ]
+./BehavioralCore=ASCShouldGenerateModuleHeader=1
+./BehavioralCore=ASCShouldGenerateDefinesHeader=1
+./BehavioralIC=ASCModuleName='BehavioralIC'
+./BehavioralIC=ASCModuleType='almPlugin'
+./BehavioralIC=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ACAPI', 'ALMFinancialCore', 'BehavioralCore' ]
+./BehavioralIC=ASCShouldInstallModuleHeader=0
+./BehavioralIC=ASCShouldInstallDefinesHeader=0
+./BusinessPlanningADK=ASCModuleName='BusinessPlanningADK'
+./BusinessPlanningADK=ASCModuleType='almPlugin'
+./BusinessPlanningADK=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'BusinessPlanningCore' ]
+./BusinessPlanningADK=ASCShouldInstallModuleHeader=0
+./BusinessPlanningADK=ASCShouldInstallDefinesHeader=0
+./BusinessPlanningCore=ASCModuleName='BusinessPlanningCore'
+./BusinessPlanningCore=ASCModuleType='framework'
+./BusinessPlanningCore=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'ACAPI' ]
+./BusinessPlanningCore=ASCModuleCCFLAGS=[ '-DACBPSAPI_BUILDING_DLL' ]
+./BusinessPlanningCore=ASCShouldGenerateModuleHeader=1
+./BusinessPlanningCore=ASCShouldGenerateDefinesHeader=1
+./BusinessPlanningIC=ASCModuleName='BusinessPlanningIC'
+./BusinessPlanningIC=ASCModuleType='almPlugin'
+./BusinessPlanningIC=ASCModuleFrameworksUsed=[ 'Foundation', 'ACAPI', 'ALMCore', 'ALMFinancialCore', 'BusinessPlanningCore', 'BehavioralCore', 'CashFlow' ]
+./BusinessPlanningIC=ASCShouldInstallModuleHeader=0
+./BusinessPlanningIC=ASCShouldInstallDefinesHeader=0
+./Cache=ASCModuleName='Cache'
+./Cache=ASCModuleType='almPlugin'
+./Cache=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./Cache=ASCShouldInstallModuleHeader=0
+./Cache=ASCShouldInstallDefinesHeader=0
+./CashFlow=ASCModuleName='CashFlow'
+./CashFlow=ASCModuleType='framework'
+./CashFlow=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'BehavioralCore', 'BusinessPlanningCore', 'ACAPI', 'Errors', 'CreditRiskCore' ]
+./CashFlow=ASCModuleCCFLAGS=[ '-DACCFAPI_BUILDING_DLL', '-DCASHFLOW_BUILDING_DLL' ]
+./CashFlow=ASCShouldGenerateModuleHeader=0
+./CashFlow=ASCShouldGenerateDefinesHeader=1
+./CashFlowsInRules=ASCModuleName='CashFlowsInRules'
+./CashFlowsInRules=ASCModuleType='framework'
+./CashFlowsInRules=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'ACAPI', 'CashFlow' ]
+./CashFlowsInRules=ASCModuleCCFLAGS=[ '-DCFINRULES_BUILDING_DLL' ]
+./CashFlowsInRules=ASCShouldGenerateModuleHeader=1
+./CashFlowsInRules=ASCShouldGenerateDefinesHeader=1
+./Consolidation=ASCModuleName='Consolidation'
+./Consolidation=ASCModuleType='almPlugin'
+./Consolidation=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./Consolidation=ASCShouldInstallModuleHeader=0
+./Consolidation=ASCShouldInstallDefinesHeader=0
+./ContractFinderCalculations=ASCModuleName='ContractFinderCalculations'
+./ContractFinderCalculations=ASCModuleType='almPlugin'
+./ContractFinderCalculations=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'CashFlow', 'ALMFinancialCore' ]
+./ContractFinderCalculations=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./ContractFinderCalculations=ASCShouldInstallModuleHeader=0
+./ContractFinderCalculations=ASCShouldInstallDefinesHeader=0
+./CreditRiskCore=ASCModuleName='CreditRiskCore'
+./CreditRiskCore=ASCModuleType='framework'
+./CreditRiskCore=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'BehavioralCore', 'ACAPI' ]
+./CreditRiskCore=ASCModuleCCFLAGS=[ '-DACCREDITRISKSAPI_BUILDING_DLL' ]
+./CreditRiskCore=ASCShouldGenerateModuleHeader=1
+./CreditRiskCore=ASCShouldGenerateDefinesHeader=1
+./CRIC=ASCModuleName='CRIC'
+./CRIC=ASCModuleType='almPlugin'
+./CRIC=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMCR', 'ALMFinancialCore' ]
+./CRIC=ASCShouldInstallModuleHeader=0
+./CRIC=ASCShouldInstallDefinesHeader=0
+./Errors=ASCModuleName='Errors'
+./Errors=ASCModuleType='framework'
+./Errors=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ACAPI' ]
+./Errors=ASCModuleCCFLAGS=[ '-DERRORS_EXPORTS' ]
+./Errors=ASCShouldGenerateModuleHeader=0
+./Errors=ASCShouldGenerateDefinesHeader=0
+./Exposure=ASCModuleName='Exposure'
+./Exposure=ASCModuleType='almPlugin'
+./Exposure=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'ALMCR', 'CashFlow', 'ACAPI' ]
+./Exposure=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./Exposure=ASCShouldInstallModuleHeader=0
+./Exposure=ASCShouldInstallDefinesHeader=0
+./GenericCashFlowIC=ASCModuleName='GenericCashFlowIC'
+./GenericCashFlowIC=ASCModuleType='almPlugin'
+./GenericCashFlowIC=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMFinancialCore', 'ACAPI', 'CashFlow', 'BehavioralCore', 'BusinessPlanningCore']
+./GenericCashFlowIC=ASCShouldInstallModuleHeader=0
+./GenericCashFlowIC=ASCShouldInstallDefinesHeader=0
+./IASADK=ASCModuleName='IASADK'
+./IASADK=ASCModuleType='almPlugin'
+./IASADK=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'IASCore' ]
+./IASADK=ASCShouldInstallModuleHeader=0
+./IASADK=ASCShouldInstallDefinesHeader=0
+./IASCore=ASCModuleName='IASCore'
+./IASCore=ASCModuleType='framework'
+./IASCore=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'ACAPI', 'CashFlow' ]
+./IASCore=ASCModuleCCFLAGS=[ '-DACIASAPI_BUILDING_DLL' ]
+./IASCore=ASCShouldGenerateModuleHeader=1
+./IASCore=ASCShouldGenerateDefinesHeader=1
+./IASICs=ASCModuleName='IASICs'
+./IASICs=ASCModuleType='almPlugin'
+./IASICs=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMFinancialCore', 'ACAPI', 'CashFlow', 'IASCore', 'IFRSCore', 'BehavioralCore', 'CreditRiskCore' ]
+./IASICs=ASCShouldInstallModuleHeader=0
+./IASICs=ASCShouldInstallDefinesHeader=0
+./IASPosting=ASCModuleName='IASPosting'
+./IASPosting=ASCModuleType='almPlugin'
+./IASPosting=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./IASPosting=ASCShouldInstallModuleHeader=0
+./IASPosting=ASCShouldInstallDefinesHeader=0
+./IFRSADK=ASCModuleName='IFRSADK'
+./IFRSADK=ASCModuleType='almPlugin'
+./IFRSADK=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'IFRSCore' ]
+./IFRSADK=ASCShouldInstallModuleHeader=0
+./IFRSADK=ASCShouldInstallDefinesHeader=0
+./IFRSCore=ASCModuleName='IFRSCore'
+./IFRSCore=ASCModuleType='framework'
+./IFRSCore=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'BehavioralCore', 'ACAPI', 'CashFlow', 'CreditRiskCore' ]
+./IFRSCore=ASCShouldGenerateModuleHeader=1
+./IFRSCore=ASCShouldGenerateDefinesHeader=1
+./IFRSICs=ASCModuleName='IFRSICs'
+./IFRSICs=ASCModuleType='almPlugin'
+./IFRSICs=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMFinancialCore', 'ACAPI', 'CashFlow', 'IASCore', 'IFRSCore', 'BehavioralCore' ]
+./IFRSICs=ASCShouldInstallModuleHeader=0
+./IFRSICs=ASCShouldInstallDefinesHeader=0
+./LargeExposure=ASCModuleName='LargeExposure'
+./LargeExposure=ASCModuleType='almPlugin'
+./LargeExposure=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore' ]
+./LargeExposure=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./LargeExposure=ASCShouldInstallModuleHeader=0
+./LargeExposure=ASCShouldInstallDefinesHeader=0
+./Liquidity=ASCModuleName='Liquidity'
+./Liquidity=ASCModuleType='almPlugin'
+./Liquidity=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./Liquidity=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./Liquidity=ASCShouldInstallModuleHeader=0
+./Liquidity=ASCShouldInstallDefinesHeader=0
+./McDonoughRatio=ASCModuleName='McDonoughRatio'
+./McDonoughRatio=ASCModuleType='almPlugin'
+./McDonoughRatio=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore' ]
+./McDonoughRatio=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./McDonoughRatio=ASCShouldInstallModuleHeader=0
+./McDonoughRatio=ASCShouldInstallDefinesHeader=0
+./MisysBoard=ASCModuleName='MisysBoard'
+./MisysBoard=ASCModuleType='framework'
+./MisysBoard=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./MisysBoard=ASCModuleCCFLAGS=[ '-DMISYSBOARD_BUILDING_DLL' ]
+./MisysBoard=ASCShouldGenerateModuleHeader=1
+./MisysBoard=ASCShouldGenerateDefinesHeader=1
+./MkRiskICs=ASCModuleName='MkRiskICs'
+./MkRiskICs=ASCModuleType='almPlugin'
+./MkRiskICs=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore' ]
+./MkRiskICs=ASCModuleCCFLAGS=[ '-DFCAPI_BUILD' ]
+./MkRiskICs=ASCShouldInstallModuleHeader=0
+./MkRiskICs=ASCShouldInstallDefinesHeader=0
+./Netting=ASCModuleName='Netting'
+./Netting=ASCModuleType='almPlugin'
+./Netting=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./Netting=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./Netting=ASCShouldInstallModuleHeader=0
+./Netting=ASCShouldInstallDefinesHeader=0
+./OperationalRisk=ASCModuleName='OperationalRisk'
+./OperationalRisk=ASCModuleType='almPlugin'
+./OperationalRisk=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./OperationalRisk=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./OperationalRisk=ASCShouldGenerateModuleHeader=1
+./OperationalRisk=ASCShouldInstallDefinesHeader=0
+./Ratio=ASCModuleName='Ratio'
+./Ratio=ASCModuleType='almPlugin'
+./Ratio=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore' ]
+./Ratio=ASCModuleCCFLAGS=[ '-DFCAPI_BUILD' ]
+./Ratio=ASCShouldInstallModuleHeader=0
+./Ratio=ASCShouldInstallDefinesHeader=0
+./REST=ASCModuleName='REST'
+./REST=ASCModuleType='framework'
+./REST=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore', 'BehavioralCore', 'BusinessPlanningCore', 'IFRSCore', 'CreditRiskCore' ]
+./REST=ASCModuleCCFLAGS=[ '-DREST_BUILDING_DLL' ]
+./REST=ASCShouldGenerateModuleHeader=1
+./REST=ASCShouldGenerateDefinesHeader=1
+./Securitisation=ASCModuleName='Securitisation'
+./Securitisation=ASCModuleType='almPlugin'
+./Securitisation=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore' ]
+./Securitisation=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./Securitisation=ASCShouldGenerateModuleHeader=1
+./Securitisation=ASCShouldInstallDefinesHeader=0
+./Statistics=ASCModuleName='Statistics'
+./Statistics=ASCModuleType='almPlugin'
+./Statistics=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore', 'ALMFinancialCore' ]
+./Statistics=ASCModuleCCFLAGS=[ "-DFCAPI_BUILD" ]
+./Statistics=ASCShouldInstallModuleHeader=0
+./Statistics=ASCShouldInstallDefinesHeader=0
+./Stochastic=ASCModuleType='almPlugin'
+./Stochastic=ASCModuleFrameworksUsed=[ 'Foundation', 'ALMCore' ]
+./Stochastic=ASCShouldInstallModuleHeader=0
+./Stochastic=ASCShouldInstallDefinesHeader=0
+./XBRLParser=ASCModuleType='almPlugin'
+./XBRLParser=ASCModuleFrameworksUsed=[ 'ALMCore' ]
+./XBRLParser=ASCModuleCCFLAGS=[ '-DXBRLPARSER_BUILDING_DLL' ]
+./XBRLParser=ASCModuleHeadersPaths=[ '#Library/xerces/i386-mingw32-w32/include', ]
+./XBRLParser=ASCModuleLibrariesPaths=[ '#Library/xerces/i386-mingw32-w32/lib', ]
+./XBRLParser=ASCModuleLibraries=[ 'cygxerces-c28', 'cygxerces-depdom28' ]
+./XBRLParser=ASCModuleHeadersPaths=[ '#Library/xerces/' + env['ENV']['TRIPLET'] + '/include', ]
+./XBRLParser=ASCModuleLibrariesPaths=[ '#Library/xerces/' + env['ENV']['TRIPLET'] + '/lib', ]
+./XBRLParser=ASCModuleLibraries=[ 'xerces-c', 'xerces-depdom' ]
+./XBRLParser=ASCShouldInstallModuleHeader=0
+./XBRLParser=ASCShouldInstallDefinesHeader=0

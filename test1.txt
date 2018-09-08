@@ -1,0 +1,16 @@
+{
+    "Connection1":  {
+                        "Name":  "Moja baza danych",
+                        "User ID":  "alm_mk_172DKB2",
+                        "Server":  "10.7.111.244,1709",
+                        "Password":  "alm_mk_172DKB2",
+                        "Database":  "alm_mk_172DKB2"
+                    },
+    "Connection2":  {
+                        "Name":  "BlockC",
+                        "User":  "User",
+                        "Password":  "Password",
+                        "Database":  "Database",
+                        "Server":  "Server"
+                    }
+}
