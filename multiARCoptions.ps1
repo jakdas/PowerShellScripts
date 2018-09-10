@@ -1,14 +1,17 @@
 ﻿. C:\Users\IEUser\multiDBs.ps1
+. C:\Users\IEUser\buildQuery.ps1
+. C:\Users\IEUser\variousQueries.ps1
 
 function get-multiARCoptions () {
   
 
-  $options = @("Set DB connection",
-           "Show DB connection",
+  $options = @("Define new DB connection",
            "Compare Attributes",
            "Display differing attributes",
-           "Run your own queries",
-           "Paste any sql query")
+           "Run your own predefined queries",
+           "Paste any sql query",
+           "Compare DB schemas",
+           "Compare DB schemas with position")
         
 
 
@@ -28,11 +31,13 @@ function get-multiARCoptions () {
 
 
         switch ($selected) {
-
+          "Define new DB connection" { set-nextDBconnection }
           "Compare Attributes"       { test-compareAttributes 1 | ogv -PassThru}
           "Display differing attributes" { test-compareAttributes 0 | ogv -PassThru }
-          "Paste any sql query"      { executeAnyQuery | ogv -PassThru
-          "Run your own queries"     { get-definedQueries }
+          "Paste any sql query"      { executeAnyQuery  }
+          "Run your own predefined queries"     { get-definedQueries4MultiDB }
+          "Compare DB schemas with position" { jkd-compareSchemas 1 | ogv -PassThru }
+          "Compare DB schemas"       { jkd-compareSchemas 0 | ogv -PassThru }
         }
 
     }

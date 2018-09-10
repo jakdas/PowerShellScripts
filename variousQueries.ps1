@@ -1,5 +1,5 @@
 ﻿. C:\Users\IEUser\buildQuery.ps1
-. C:\Users\IEUser\sql_functions.ps1
+#. C:\Users\IEUser\sql_functions.ps1
 
 function get-definedQueries() {
 
@@ -24,7 +24,8 @@ function get-definedQueries() {
  SELECT OBJC_CLASS,COUNT(*) 
    FROM ZOBJECTS
   WHERE OBJC_CLASS like '%___OBJC_CLASS__Enter part of the OBJC_CLASS name___%'
- GROUP BY OBJC_CLASS")
+ GROUP BY OBJC_CLASS
+ --SORT:Column1")
 
  $processedQueries = foreach ($query in $queries.keys) {
    $fields = $query -split "_"
@@ -39,15 +40,16 @@ function get-definedQueries() {
 
 
  $selectedQuery.Query
+ $sortPhrase = $($selectedQuery.Query -replace "`n","")  -replace "^.*--SORT:",""
  $sqlQuery = build-query $selectedQuery.Query
  $sqlQuery
- executesqlquery $sqlQuery | ogv -PassThru
+ executesqlquery $sqlQuery | Sort-Object -Property $sortPhrase | ogv -PassThru
 
 }
 
 function executeAnyQuery()  {
   
-  $sql = get-Parameter "Paste here your SQL query"
+  $sql = get-Parameter "Paste your SQL query here"
   
   $output = executemultisqlquery $sql 
   $fields = $output  | Get-Member -MemberType NoteProperty | Where-Object PropertyName -ne "Database" | Select -ExpandProperty Name  | ogv -PassThru
@@ -58,12 +60,14 @@ function executeAnyQuery()  {
   $properties = $properties + "Database"
   $properties
   #select * from BSDATE
-  $output | Sort-Object -Property $properties | ogv
+  $output | Sort-Object -Property $properties | ogv -PassThru
 
 }
 
 
-function get-allPlistEnumValues() {
+
+
+function OLDget-allPlistEnumValues() {
 
 $query = "
 select INTERNAL_NAME, 

@@ -91,6 +91,125 @@ Function clear-nulls1 ($data, $data2) {
 }
 
 
+function get-definedQueries4MultiDB() {
+
+ $queries = @{}
+
+ $queries.add("CAT1__BSDATE Table", "
+ SELECT * 
+   FROM BSDATE")
+ $queries.add("CAT2__Number of contracts per SD", "
+ SELECT SITUATION_DATE,COUNT(*) COUNT
+   FROM CONTRACT 
+  GROUP BY SITUATION_DATE")
+ $queries.add("CAT2__Query4", "
+ SELECT * 
+   FROM BSDATE 
+  WHERE SITUATION_DATE ='___SD__Enter Situation Date___'")
+ $queries.add("CAT3__ZOBJECTS objects for OBJC_CLASS", "
+ SELECT OBJC_CLASS,COUNT(*) COUNT
+   FROM ZOBJECTS
+  WHERE OBJC_CLASS like '%___OBJC_CLASS__Enter part of the OBJC_CLASS name___%'
+ GROUP BY OBJC_CLASS")
+
+ $processedQueries = foreach ($query in $queries.keys) {
+   $fields = $query -split "__"
+   $row = New-Object -TypeName PSObject
+   $row | Add-Member -MemberType NoteProperty -Name "Category" -Value $fields[0]
+   $row | Add-Member -MemberType NoteProperty -Name "Name" -Value $fields[1]
+   $row | Add-Member -MemberType NoteProperty -Name "Query" -Value $queries[$query]
+   $row
+ } 
+ 
+ $selectedQuery = $processedQueries | Sort-Object -Property Category,Name  | ogv -PassThru
+
+
+ $selectedQuery.Query
+ $sqlQuery = build-query $selectedQuery.Query
+ $sqlQuery
+ executemultisqlquery $sqlQuery | ogv -PassThru
+
+}
+
+function jkd-compareSchemas($withPosition) {
+
+if ($withPosition -eq 1) {
+$sql = "SELECT  t.table_name ,concat(c.ordinal_position,':',c.column_name,': (',c.IS_NULLABLE,') ',c.DATA_TYPE,' ', c.CHARACTER_MAXIMUM_LENGTH,' ', c.NUMERIC_PRECISION) VALUE
+FROM INFORMATION_SCHEMA.TABLES t,INFORMATION_SCHEMA.COLUMNS c
+WHERE t.TABLE_TYPE = 'BASE TABLE' 
+and t.TABLE_NAME=c.TABLE_NAME
+and t.TABLE_CATALOG=c.TABLE_CATALOG
+and (t.TABLE_NAME not like '%_SS1[0-9]%' and t.TABLE_NAME not like '%_SS2[0-9]%' and t.TABLE_NAME not like '%_SS[0-9]' or t.TABLE_NAME like '%_SS1' )
+order by t.TABLE_NAME"
+}
+else {
+$sql = "SELECT  t.table_name ,concat(c.column_name,': (',c.IS_NULLABLE,') ',c.DATA_TYPE,' ', c.CHARACTER_MAXIMUM_LENGTH,' ', c.NUMERIC_PRECISION) VALUE
+FROM INFORMATION_SCHEMA.TABLES t,INFORMATION_SCHEMA.COLUMNS c
+WHERE t.TABLE_TYPE = 'BASE TABLE' 
+and t.TABLE_NAME=c.TABLE_NAME
+--and t.TABLE_NAME like '[A-X]%'
+and t.TABLE_CATALOG=c.TABLE_CATALOG
+and (t.TABLE_NAME not like '%_SS1[0-9]%' and t.TABLE_NAME not like '%_SS2[0-9]%' and t.TABLE_NAME not like '%_SS[0-9]' or t.TABLE_NAME like '%_SS1' )
+order by t.TABLE_NAME"
+}
+
+
+$allData = executemultisqlquery $sql 
+$connections = @()
+$processedData = $allData | % {
+   if ($_.Database -notin $connections) {
+      $connections=$connections + $_.Database
+   }
+   $row = New-Object -TypeName psobject 
+   $row | Add-Member -MemberType NoteProperty -Name "INTERNAL_NAME" -Value $_.TABLE_NAME 
+   $row | Add-Member -MemberType NoteProperty -Name "VALUE" -Value $_.VALUE
+   $row | Add-Member -MemberType NoteProperty -Name "Database" -Value $_.Database
+   $row
+} 
+
+jkd-displayExistSummary $processedData 0 $connections
+
+}
+
+function jkd-displayExistSummary($allData,$displayAll,$connections) {
+
+
+
+ $headerRow = New-Object -TypeName psobject
+ $headerRow | Add-Member -MemberType NoteProperty -Name "VALUE" -Value ""
+ $headerRow | Add-Member -MemberType NoteProperty -Name "COUNT" -Value ""
+
+ foreach ($name in $connections) {
+    $headerRow | Add-Member -MemberType NoteProperty -Name $name -Value ""
+ }
+ 
+ $wynik=$allData  | Group-Object -Property INTERNAL_NAME,VALUE 
+ $output = $wynik | % {
+    $obj=new-object -TypeName PSObject; 
+    $obj | Add-member -name "VALUE" -value $($_.Name -replace ",",":") -MemberType NoteProperty; 
+    $count = 0
+    foreach ($item in $_.Group)  {
+        $obj | Add-Member -Force -name $item.Database -value  "EXISTS" -MemberType NoteProperty
+        $count = $count+1
+    }
+    $obj | Add-Member -Name "COUNT" -Value $count -MemberType NoteProperty 
+    $obj}
+
+ $finalOutput = $output | Sort-Object -Property VALUE
+ $headerRow 
+ if ($displayAll -eq 0) {
+   $finalOutput | Where-Object COUNT -ne $connections.Count
+ } else {
+   $finalOutput
+ }
+ 
+
+
+}
+
+
+
+
 function test-compareAttributes($displayAll) {
 
 
@@ -105,7 +224,7 @@ and SITUATION_DATE = (select MAX(SITUATION_DATE) FROM ZOBJECTS Z1
                      WHERE Z1.OID=Z.OID) 
 and PLIST_STRING not like '%Members=()%' 
 and PLIST_STRING not like '%TableName=%' 
-and INTERNAL_NAME like '%Pr%'
+and INTERNAL_NAME like '%'
 --and INTERNAL_NAME like '%arc_jakub%' 
 order by INTERNAL_NAME"
 
@@ -138,7 +257,7 @@ $allPLISTRows = $output | % {
     $headerRow | Add-Member -MemberType NoteProperty -Name $name -Value ""
  }
  
- $wynik=$allPLISTRows + $allDBRows  | Group-Object -Property INTERNAL_NAME,VALUE 
+ $wynik=$allPLISTRows + $allDBRows  | Group-Object -CaseSensitive -Property INTERNAL_NAME,VALUE 
  $output = $wynik | % {
     $obj=new-object -TypeName PSObject; 
     $obj | Add-member -name "VALUE" -value $($_.Name -replace ",",":") -MemberType NoteProperty; 
@@ -182,7 +301,7 @@ and t.TABLE_NAME not in ('VERSIONS','TABLE_TO_ANONYMISE','COUNTRY_RATING_TMP','C
 and c.COLUMN_NAME != 'DESCRIPTION'   --BIS_CREDIT_APPROACH   BIS_CREDIT_APPROACH_REF
 order by t.TABLE_NAME"
 
-$unions = ExecuteSqlQuery $sql "Connection5"
+$unions = ExecuteSqlQuery $sql "arcjakub"
 $properUnions = $unions | % {if ($_.Column1 -like "*VALUATION_METHOD_ENUM*") {$_.Column1 -replace "UNION ALL",""} else {$_.Column1}}   
 
 $properUnions = $properUnions -replace "`"","'"
@@ -283,6 +402,7 @@ function get-selectedDBconnection ($connectionName) {
 function executemultisqlquery ($query) {
    $connections = show-allDBconnections
    $connections | % {
+     
       $result = executesqlquery  $query $_
       $result | Add-Member -Name Database -Value $_ -MemberType NoteProperty
       $output = $result  | ConvertTo-Csv | ConvertFrom-Csv
